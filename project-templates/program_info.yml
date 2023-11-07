@@ -1,0 +1,127 @@
+# Project Information Template
+program_name: ""
+program_status:  # Use one of the following: "Active", "Inactive", "Closed"
+program_privacy:  # Use one of the following: "Private", "Public"
+description: ""
+platform: ""
+
+# Scope of the Project
+scope:
+  in-scope_domains:
+    - domain: ""
+      ip_address: ""
+      notes:
+        synopsis: ""
+        focus_areas: []  # This is a list
+        ineligible_submissions: []  # This is a list
+        notes: []  # This is a list
+
+  out-of-scope_domains:
+    - domain: ""
+      ip_address: ""
+      notes: ""
+
+# Detailed Instructions for Various Phases of the Project
+instructions:
+  recon: []  # This is a list
+    # Instructions specifically targeted to the recon phase
+  scanning: []  # This is a list
+    # Instructions specifically targeted to the scanning phase
+  exploitation: []  # This is a list
+    # Instructions specifically targeted to the exploitation phase
+  personally_identifiable_information: []  # This is a list
+    # Special instructions for handling exfiltrated PII
+  reporting: []  # This is a list
+    # Instructions for reporting findings
+  remediation: []  # This is a list
+    # Instructions for documenting remediation efforts
+  eligible_subs:  # This should be a list of dictionaries
+    - domain: ""  # This is a dictionary with nested items
+      bug: ""
+      severity: ""
+      description: ""
+  ineligible_subs:  # This should be a list of dictionaries
+    - domain: ""  # This is a dictionary with nested items
+      bug: ""
+      severity: ""
+      description: ""
+  reward_collection: []  # Assuming you may have multiple instructions, this is a list
+
+assets:
+  subdomains:
+    - subdomain: ""
+      ip_address: ""
+      service_provider: ""
+      notes: []  # An empty list expecting to be populated with strings
+
+  servers_and_hosting:
+    - server_ip: ""
+      hosting_provider: ""
+      location: ""
+      purpose: ""  # If multiple purposes are expected, use []
+      notes: []
+
+  api_endpoints:
+    - endpoint: ""
+      method: ""
+      parameters: []  # An empty list expecting to be populated with strings
+      auth_required: false  # Use true or false here
+      notes: []
+
+  third_party_services:
+    - service_name: ""
+      asset_type: ""
+      usage: ""  # If multiple usages are expected, use []
+      notes: []
+
+  miscellaneous_assets:
+    - asset_description: ""
+      location: ""
+      access_info: []  # An empty list expecting to be populated with strings
+      notes: []
+
+vulnerabilities:
+  - vulnerability: ""
+    identifier: ""  # CVE or other commonly used identifier, if exists.
+    severity: ""
+    impact: ""
+    possible_exploits: []  # An empty list expecting to be populated with strings
+    remediation: []  # An empty list expecting to be populated with strings
+    notes: []  # An empty list expecting to be populated with strings
+
+exploitation:
+  - vulnerability: ""
+    severity: ""
+    impact: ""
+    remediation: []  # An empty list expecting to be populated with strings
+    notes: []  # An empty list expecting to be populated with strings
+
+bugs_already_found:
+  - bug_id: ""  # Unique identifier for the bug
+    title: ""
+    description: ""
+    severity: ""
+    domain: ""
+    reported_by:  # Information about the individual who reported the bug
+      name: ""
+      contact: ""
+      profile_url: ""  # If they have a profile on a platform, e.g., HackerOne, Bugcrowd
+    submission_date: ""  # Date the bug was submitted, e.g., "2023-11-04"
+    status: ""  # Status of the bug (e.g., "Under Review", "Confirmed", "Rejected")
+    payment:
+      paid: false  # true if paid, false otherwise
+      amount: 0.0  # Amount paid for the bug, if any
+      currency: "USD"  # Currency in which payment was made
+      payment_date: ""  # Date the payment was made, if applicable
+    remediation:
+      fixed: false  # true if the bug has been fixed, false otherwise
+      fix_date: ""  # Date when the bug was fixed, if applicable
+      notes: []  # Any additional notes related to the remediation
+
+
+# Metadata for tracking template versions and changes
+metadata:
+  version: "1.0"
+  author: "[Your Name]"
+  created_on: "YYYY-MM-DD"
+  last_updated: "YYYY-MM-DD"
