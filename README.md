@@ -33,7 +33,7 @@ BBPB organizes projects into the following directories:
 To get started with BBPB, clone the repository and navigate to the project's root directory:
 
 ```sh
-git clone [repository-url]
+git clone [https://www.github.com/technomoonbase/project_builder]
 cd BBPB
 ```
 
@@ -64,7 +64,7 @@ pending
 
 ## License
 
-pending
+BBPB is open-source software licensed under the MIT license.
 
 ## Support
 
