@@ -1,5 +1,6 @@
 from collections import deque
 from dataclasses import asdict, dataclass, field
+from pathlib import Path
 from typing import List, Optional, Dict
 
 import yaml
@@ -120,8 +121,8 @@ class MessageTurn:
         Converts the Turn dataclass instance to a dictionary.
         """
         return {
+            "conversation": self.conversation,
             "uuid": self.uuid,
-            "created_at": self.created_at,
             "request": asdict(self.request),
             "response": asdict(self.response),
         }
@@ -152,3 +153,39 @@ def append_turn_to_conversation(conversation: Conversation, turn: MessageTurn):
     """
     conversation.turns.append(turn)
     conversation.last_active = turn.response.timestamp  # Update last_active to the timestamp of the latest response
+
+
+def append_turn_to_conversation_yaml(conversation_file_path, conversation_uuid, turn: MessageTurn):
+    # TODO: testing
+    """
+    Appends a turn to the specified conversation in the YAML file.
+
+    :param conversation_file_path: The file path of the YAML file.
+    :param conversation_uuid: The UUID of the conversation to append to.
+    :param turn: The turn data to append.
+    """
+    turn_dict = turn.to_dict()
+    # Load the existing conversations
+    with open(conversation_file_path, 'r') as file:
+        data = yaml.safe_load(file) or {"conversations": []}
+
+    # Find the conversation by UUID
+    conversation = next((c for c in data["conversations"] if c["uuid"] == conversation_uuid), None)
+    
+    if conversation:
+        # Append the new turn and update last_active
+        conversation["turns"].append(turn_dict)
+        conversation["last_active"] = turn_dict["response"]["timestamp"]
+    else:
+        # If the conversation wasn't found, create a new one and append the turn
+        conversation = {
+            "uuid": conversation_uuid,
+            "created_at": turn_dict["request"]["timestamp"],
+            "last_active": turn_dict["response"]["timestamp"],
+            "turns": [turn_dict]
+        }
+        data["conversations"].append(conversation)
+    
+    # Write the updated list of conversations back to the YAML file
+    with open(conversation_file_path, 'w') as file:
+        yaml.safe_dump(data, file)

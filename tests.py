@@ -4,7 +4,7 @@ import json
 from uuid import uuid4
 from managers.agents.agent_manager import AgentConfig, discoChatDefaultconfig, Agent
 from managers.agents import default_messages
-from managers.chat.messages import Message, MessageTurn
+from managers.chat.messages import Message, MessageTurn, Conversation, append_turn_to_conversation
 
 
 def managers_agents_agent_manager_AgentConfig():
@@ -83,12 +83,61 @@ def managers_agents_agent_manager_build_prompt():
     print(asdict(message_turn))
     print("\n=====  MESSAGE TURN PASS  =====\n")
 
+# Add Turn to Conversation
+def managers_chat_messages_append_turn_to_conversation():
+    conversation = Conversation(
+        uuid=str(uuid4()),
+        created_at=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+        last_active=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+        turns=[]
+    )
+
+    # Create MessageTurn
+    request = Message(
+        uuid=str(uuid4()),
+        role='user',
+        speaker_name='techno',
+        timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+        project='all',
+        content="What is the meaning of life?"
+    )
+
+    response = Message(
+        uuid=str(uuid4()),
+        role='assistant',
+        speaker_name='Disco',
+        timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+        project='all',
+        content="42"
+    )
+
+    message_turn = MessageTurn(
+        conversation='testing',
+        uuid=str(uuid4()),
+        request=request,
+        response=response
+    )
+    print("Message Turn:\n")
+    print(asdict(message_turn))
+    print("\n=====  MESSAGE TURN PASS  =====\n")
+
     # Add Turn to Conversation
+    append_turn_to_conversation(conversation, message_turn)
+    print("Conversation:\n")
+    print(asdict(conversation))
+    print("\n=====  CONVERSATION PASS  =====\n")
+
 
 def managers_agents_agent_manager_chat_with_agent():
     config = discoChatDefaultconfig()
     agent = Agent(config)
     agent.chat_with_agent(project=None)
 
+
 if __name__ == '__main__':
+    #config = managers_agents_agent_manager_discoChatDefaultConfig()
+    #managers_agents_agent_manager_AgentConfig()
+    #managers_agents_agent_manager_Agent(config)
     managers_agents_agent_manager_chat_with_agent()
+    #managers_agents_agent_manager_build_prompt()
+    #managers_chat_messages_append_turn_to_conversation()

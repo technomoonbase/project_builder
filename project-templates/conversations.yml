@@ -1,0 +1,23 @@
+## Conversation History and Information
+conversations:
+- uuid:  # Unique identifier for the conversation
+  created_at:  # Date and time the conversation was created
+  last_active:  # Date and time the conversation was last active
+  # Conversation turns
+  turns:
+    - uuid:  # Unique identifier for the turn
+      created_at:  # Date and time the turn was created
+      request:
+        uuid: 
+        role: 
+        speaker_name: 
+        timestamp:
+        project:
+        content:
+      response:
+        uuid: 
+        role: 
+        speaker_name: 
+        timestamp:
+        project:
+        content:

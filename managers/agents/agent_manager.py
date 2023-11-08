@@ -5,9 +5,9 @@ import json
 from pathlib import Path
 import subprocess
 from uuid import uuid4
-
 import yaml
-from managers.chat.messages import Message, MessageCache
+from managers.chat.messages import Message, MessageCache, append_turn_to_conversation_yaml, MessageTurn
+from managers.chat.messages import Conversation
 
 
 @dataclass
@@ -48,74 +48,155 @@ class AgentConfig:
 
 
 class Agent:
-    tasks: list()
-    whoami_path: str
-    whoami: dict()
-    conversation_path: str
+    """
+    Ai agent class for managing conversations and providing contextually relevant responses.
 
+    :param config: The agent configuration.
+    """
     def __init__(self, config: AgentConfig):
         # Load config attributes
         self.config: dict = config
+        self.conversations_yaml_path: str = Path(f'managers/agents/{config.agent_name}/conversations.yml')
+
         # Agent identity context - for prompt inclusion when the bot has an identity crisis... jk
-        self.whoami_path: str = Path(f'{config.agent_name}/whoami.yml')
+        #self.whoami_path: str = Path(f'{config.agent_name}/whoami.yml')
+
         # Conversation history
-        self.conversation_path = Path(f'{config.agent_name}/conversation_history.yml')
+        conversation_uuid = self.get_most_recent_conversation_uuid()
+
+        if conversation_uuid:
+            self.conversation = self.get_conversation_by_uuid(conversation_uuid)
+            print(f"Resuming conversation {conversation_uuid}!")
+        else:
+            self.conversation: dict = Conversation(
+                uuid=str(uuid4()),
+                created_at=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+                last_active=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+                turns=[]
+            )
+            conversation_uuid = self.conversation.uuid
+            print(f"New conversation {conversation_uuid} started!")
+
+        self._conversation_uuid = conversation_uuid
         self.message_cache = MessageCache(capacity=50)
-    
-    def load_identity(self):
-        if not self.whoami_path.exists():
-            self.whoami = {
-                'agent_name': self.config.agent_name,
-                'description': self.config.description
-            }
-            with open(self.whoami_path, 'w') as f:
-                yaml.dump(self.whoami, f)
+
+    def get_most_recent_conversation_uuid(self):
+        # TODO: testing
+        """
+        Retrieves the UUID of the most recent conversation from the YAML file.
+        :return: The UUID of the most recent conversation or None if there are no conversations.
+        """
+        try:
+            with open(self.conversations_yaml_path, 'r') as file:
+                data = yaml.safe_load(file) or {"conversations": []}
+        except FileNotFoundError:
+            # Handle the case where the YAML file does not exist
+            return None
+
+        # Filter out conversations that don't have a 'last_active' timestamp
+        valid_conversations = [c for c in data["conversations"] if c["last_active"]]
+
+        if not valid_conversations:
+            return None
+
+        # Now we can safely find the most recent conversation
+        most_recent_conversation = max(
+            valid_conversations,
+            key=lambda c: datetime.strptime(c["last_active"], "%Y-%m-%d @ %H:%M")
+        )
+        return most_recent_conversation["uuid"]
+
+
+    def get_conversation_by_uuid(self, conversation_uuid):
+        # TODO: testing
+        """
+        Gets the conversation from the YAML file based on the uuid.
+        :param conversation_uuid: The UUID of the conversation to get.
+        :return: The conversation data or None if not found.
+        """
+        with open(self.conversations_yaml_path, 'r') as file:
+            data = yaml.safe_load(file) or {"conversations": []}
+        
+        conversation = next(
+            (item for item in data["conversations"] if item["uuid"] == conversation_uuid), 
+            None
+        )
+        return conversation
 
     def chat_with_agent(self, project: str or None):
+        """
+        Opens a chat session with the agent
+
+        :param project: The name of the project to chat about. If None, chat about all projects.
+        """
         chat_banner = subprocess.run(['toilet', '--filter', 'border:metal', 'DISCO Chat'], stdout=subprocess.PIPE)
         print(chat_banner.stdout.decode('utf-8'))
         response_num = 1
-        conversation = conversation
 
         while True:
             # Get the user's request
             request = input("user@chat> ")
-            # Convert to Message class
-            new_request_message = Message(
-                uuid=str(uuid4()),
-                role='user',
-                speaker_name='user',
-                timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
-                project='all' if project is None else project,
-                content=request
-            )
-            #print("Incoming Message:\n")
-            #print(asdict(new_request_message))
-            print("\n=====  INCOMING MESSAGE PASS  =====\n")
+            if request == 'exit':
+                break
+            if len(request) == 0:
+                pass
+            else:
+                # Convert to Message class
+                new_request_message = Message(
+                    uuid=str(uuid4()),
+                    role='user',
+                    speaker_name='user',
+                    timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+                    project='all' if project is None else project,
+                    content=request
+                )
+                print("Incoming Message:\n")
+                print(asdict(new_request_message))
+                print("\n=====  INCOMING MESSAGE PASS  =====\n")
 
-            # Get the recent history from the message cache
-            chat_history = self.message_cache.get_message_cache()
-            for message in chat_history:
-                print(message.to_conversation_dict())
-            print(chat_history)
+                # Get the recent history from the message cache
+                print("Chat History:\n")
+                chat_history = self.message_cache.get_message_cache()
+                print(f"Chat history length: {len(chat_history)}")
+                print("\n=====  CHAT HISTORY PASS  =====\n")
 
-            # Build the prompt
-            prompt = self.build_prompt(new_request_message, chat_history)
-            print("Prompt:\n")
-            #print(prompt)
+                # Build the prompt
+                prompt = self.build_prompt(new_request_message, chat_history)
+                print("Prompt:\n")
+                print(prompt)
+                print("\n=====  PROMPT PASS  =====\n")
 
-            # Get the response
-            response = Message(
-                uuid=str(uuid4()),
-                role='assistant',
-                speaker_name='Disco',
-                timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
-                project='all' if project is None else project,
-                content=f'This is response number {response_num}. Thank you for your request.'
-            )
-            response_num += 1
-            # Add turn to chat history
-            
+                # Get the response
+                response_message = Message(
+                    uuid=str(uuid4()),
+                    role='assistant',
+                    speaker_name='Disco',
+                    timestamp=str(datetime.now().strftime('%Y-%m-%d @ %H:%M')),
+                    project='all' if project is None else project,
+                    content=f'This is response number {response_num}. Thank you for your request.'
+                )
+                response_num += 1
+                # Create turn and add to chat history
+                print("Message Turn:\n")
+                message_turn = MessageTurn(
+                    conversation='testing',
+                    uuid=str(uuid4()),
+                    request=new_request_message,
+                    response=response_message
+                )
+                print(asdict(message_turn))
+                self.message_cache.add_message(message_turn)
+                print("\n=====  MESSAGE TURN PASS  =====\n")
+
+                # Add Turn to Conversation
+                print("Conversation:\n")
+                append_turn_to_conversation_yaml(
+                    self.conversations_yaml_path, 
+                    self._conversation_uuid,
+                    message_turn,
+                )
+                
+                print("\n=====  CONVERSATION PASS  =====\n")
 
     
     def build_prompt(self, incoming_message: Message, chat_history):

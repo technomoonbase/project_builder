@@ -1,0 +1,221 @@
+conversations:
+- created_at: 2023-11-07 @ 21:19
+  last_active: 2023-11-07 @ 21:28
+  turns:
+  - conversation: testing
+    request:
+      content: hello
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:19
+      uuid: 351e6784-b196-44a8-8846-920035e9e496
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:19
+      uuid: cd74c7af-974b-4826-9f11-9f98ef619d53
+    uuid: 5ac4c35b-fb89-4b8e-85ca-4bd63667cda6
+  - conversation: testing
+    request:
+      content: sweet!
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:19
+      uuid: 18e0060e-56a8-42ce-a1b1-9c398808ef96
+    response:
+      content: This is response number 2. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:19
+      uuid: 09539fe6-3cae-4d8f-aa31-aed71963e1db
+    uuid: 3e0fd5f7-853f-4302-8202-f5f57f16d8c5
+  - conversation: testing
+    request:
+      content: hello again
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:21
+      uuid: 7326d0de-37c3-4ff6-a0f8-bfe35aaad3c7
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:21
+      uuid: cca2efe1-2dfe-4c71-8775-851a20147406
+    uuid: b2fc1b7a-5c2c-426b-89ef-50da168ed1ac
+  - conversation: testing
+    request:
+      content: hello again again
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:22
+      uuid: 3d2efb97-8338-49ab-b854-66498acd1abe
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:22
+      uuid: a7b91c93-dfa0-49f8-a6d5-d0ab20be629a
+    uuid: 44a9a343-f0e2-4f28-9620-fb209d63481e
+  - conversation: testing
+    request:
+      content: hello again agin again
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:24
+      uuid: e3c06e61-0463-4396-8852-33552e085715
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:24
+      uuid: b3d56c4e-14c0-4ed5-8e35-c7da7e4fa8da
+    uuid: 5537f386-9eba-4245-b675-ca156a434528
+  - conversation: testing
+    request:
+      content: hello
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:25
+      uuid: 8e118374-eb0b-4272-87c0-dad51a873ac2
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:25
+      uuid: f17cd29e-2845-4134-9d81-35b7db945593
+    uuid: 60b05b39-a289-4715-aae2-5755e8d7711c
+  - conversation: testing
+    request:
+      content: what up
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:25
+      uuid: 93188a52-d6b4-4983-8fdd-b29b5839ebd8
+    response:
+      content: This is response number 2. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:25
+      uuid: 450fa592-6eeb-4813-8187-baeb70826d29
+    uuid: d3f53f81-2c02-494d-af93-32a51d768fa0
+  - conversation: testing
+    request:
+      content: nope
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:26
+      uuid: 5fe03f2c-00e3-4091-aee3-02c35135b512
+    response:
+      content: This is response number 3. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:26
+      uuid: 4b072c32-625e-4270-a5a4-f6dd5c0e8b2d
+    uuid: 8ed17fd0-05a3-4d94-9110-a78c75c824d5
+  - conversation: testing
+    request:
+      content: what is that number?
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:27
+      uuid: 1c607ee6-c1b1-466c-a740-a2c68ba24266
+    response:
+      content: This is response number 4. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:27
+      uuid: e132d052-f585-42b2-9ca6-7c80b1a996e4
+    uuid: 13a8f489-cbda-41d6-8154-4577c24f0477
+  - conversation: testing
+    request:
+      content: hello
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:28
+      uuid: 1d23070c-aedd-404d-88d9-eee561bfc202
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:28
+      uuid: a03ca1f5-a67b-4d6e-96c8-71bceb1e494d
+    uuid: 0d217785-d076-4ed0-83b3-29573eb60556
+  - conversation: testing
+    request:
+      content: how are you?
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:28
+      uuid: 1555fa09-a524-4f74-aa16-98aca73772b4
+    response:
+      content: This is response number 2. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:28
+      uuid: fea3ada5-05ca-4f84-bee7-1ee1267c3f70
+    uuid: 5e32fc2a-6148-44a1-920d-cb78f87b5126
+  - conversation: testing
+    request:
+      content: good thanks
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:28
+      uuid: 61db91cb-d769-42e0-9210-78db52099004
+    response:
+      content: This is response number 3. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:28
+      uuid: a1191f01-d147-4932-a22e-1aaaf79b71e0
+    uuid: 0f5518dc-7116-4a5d-a251-01dcf49ee21c
+  uuid: 35576505-ef48-4562-b081-b2a5c2c8e723

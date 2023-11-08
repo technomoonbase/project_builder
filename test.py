@@ -47,3 +47,121 @@ prompt = [
         'content': ''
     }
 ]
+
+conversation = {
+    'uuid': '5be3e4a1-1d4a-4f0e-bacc-9c17ed51e6a4', 
+    'created_at': '2023-11-07 @ 19:53', 
+    'last_active': '2023-11-07 @ 19:54', 
+    'turns': [
+        {
+            'conversation': 'testing', 
+            'uuid': '101f88fa-d4f5-4c97-99be-0ced95cbde8d', 
+            'request': {
+                'uuid': '0f91408b-f182-4f61-b87d-40399290312f', 
+                'role': 'user', 
+                'speaker_name': 'user', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'hello', 
+                'metadata': None
+            }, 
+            'response': {
+                'uuid': '1491a058-e7b3-4bf8-a8cb-432f800a06c7', 
+                'role': 'assistant', 
+                'speaker_name': 'Disco', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'This is response number 1. Thank you for your request.', 
+                'metadata': None
+            }
+        }, 
+        {
+            'conversation': 'testing', 
+            'uuid': '43731c21-d997-4f52-9607-191a11d91b1c', 
+            'request': {
+                'uuid': '75d31636-982c-4107-b097-4c5cae2b1097', 
+                'role': 'user', 
+                'speaker_name': 'user', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'how are you?', 
+                'metadata': None
+            }, 
+            'response': {
+                'uuid': 'cb4547cd-b2a1-4d49-8b44-390a37bd643a', 
+                'role': 'assistant', 
+                'speaker_name': 'Disco', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'This is response number 2. Thank you for your request.', 
+                'metadata': None
+            }
+        }, 
+        {
+            'conversation': 'testing', 
+            'uuid': 'fb38604c-3688-4a6e-a4d9-8efdd44a75af', 
+            'request': {
+                'uuid': '99dd951e-0713-490f-8b63-72639e699fba', 
+                'role': 'user', 
+                'speaker_name': 'user', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'great', 
+                'metadata': None
+            }, 
+            'response': {
+                'uuid': 'f1813152-13fb-403d-898c-006b72743b60', 
+                'role': 'assistant', 
+                'speaker_name': 'Disco', 
+                'timestamp': '2023-11-07 @ 19:53', 
+                'project': 'all', 
+                'content': 'This is response number 3. Thank you for your request.', 
+                'metadata': None
+            }
+        }, 
+        {
+            'conversation': 'testing', 
+            'uuid': '93e83d10-bbf5-47b6-8262-78c746848305', 
+            'request': {
+                'uuid': 'e3940829-99e1-4d5e-89db-6a5b8752fe7c', 
+                'role': 'user', 
+                'speaker_name': 'user', 
+                'timestamp': '2023-11-07 @ 19:54', 
+                'project': 'all', 
+                'content': 'how much wood could a wood chuck chuck?', 
+                'metadata': None
+            }, 
+            'response': {
+                'uuid': '57985efd-30af-4ebf-b174-f277425df033', 
+                'role': 'assistant', 
+                'speaker_name': 'Disco', 
+                'timestamp': '2023-11-07 @ 19:54', 
+                'project': 'all', 
+                'content': 'This is response number 4. Thank you for your request.', 
+                'metadata': None
+            }
+        }, 
+        {
+            'conversation': 'testing', 
+            'uuid': 'f490f539-96bc-4c4f-a991-3f5543117aca', 
+            'request': {
+                'uuid': 'd6ff84ed-3c44-4cc6-84c2-0cb21a2928d5', 
+                'role': 'user', 
+                'speaker_name': 'user', 
+                'timestamp': '2023-11-07 @ 19:54', 
+                'project': 'all', 
+                'content': 'if a wood chuck could chuck wood?', 
+                'metadata': None
+            }, 
+            'response': {
+                'uuid': '50c29c30-84bc-453f-8b6d-ee465d30b3ae', 
+                'role': 'assistant', 
+                'speaker_name': 'Disco', 
+                'timestamp': '2023-11-07 @ 19:54', 
+                'project': 'all', 
+                'content': 'This is response number 5. Thank you for your request.', 
+                'metadata': None
+            }
+        }
+    ]
+}
