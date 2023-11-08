@@ -1,6 +1,6 @@
 conversations:
 - created_at: 2023-11-07 @ 21:19
-  last_active: 2023-11-07 @ 21:28
+  last_active: 2023-11-07 @ 21:32
   turns:
   - conversation: testing
     request:
@@ -218,4 +218,40 @@ conversations:
       timestamp: 2023-11-07 @ 21:28
       uuid: a1191f01-d147-4932-a22e-1aaaf79b71e0
     uuid: 0f5518dc-7116-4a5d-a251-01dcf49ee21c
+  - conversation: testing
+    request:
+      content: hey
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:32
+      uuid: 9537d66c-2bee-43dc-a288-a7af47400e90
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:32
+      uuid: c5e5aba7-7000-4a4f-9276-05c6102b7389
+    uuid: 8adb1ff3-87c5-4c75-865d-9d2f37581142
+  - conversation: testing
+    request:
+      content: what up
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-07 @ 21:32
+      uuid: c1df4650-6a28-425e-8640-89b846dac3f0
+    response:
+      content: This is response number 2. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-07 @ 21:32
+      uuid: 73170788-fa91-46ea-b648-a2351975bb6a
+    uuid: 02183466-e052-40d6-85dd-120c03f07cef
   uuid: 35576505-ef48-4562-b081-b2a5c2c8e723

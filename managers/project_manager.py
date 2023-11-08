@@ -123,6 +123,8 @@ class ProjectManager:
                 self.ai_code_review()
             elif choice == '9' or choice == 'exit' or choice == 'quit':
                 print("Returning to main menu...")
+                banner = subprocess.run(['toilet', '--filter', 'border:metal', 'DISCO ROVER'], stdout=subprocess.PIPE)
+                print(banner.stdout.decode('utf-8'))
                 break
             else:
                 print("Invalid input, please try again.")

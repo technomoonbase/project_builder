@@ -5,6 +5,8 @@ from uuid import uuid4
 from managers.agents.agent_manager import AgentConfig, discoChatDefaultconfig, Agent
 from managers.agents import default_messages
 from managers.chat.messages import Message, MessageTurn, Conversation, append_turn_to_conversation
+from ai3j.aihelpers import ai_assist_bounty_listing_to_yaml
+from pathlib import Path
 
 
 def managers_agents_agent_manager_AgentConfig():
@@ -134,10 +136,18 @@ def managers_agents_agent_manager_chat_with_agent():
     agent.chat_with_agent(project=None)
 
 
+def ai_ai_initial_review_ai_assist_bounty_listing_to_yaml():
+    result = ai_assist_bounty_listing_to_yaml('testy')
+    print("AI Initial Review Result:\n")
+    print(result)
+    print("\n=====  AI INITIAL REVIEW PASS  =====\n")
+
+
 if __name__ == '__main__':
     #config = managers_agents_agent_manager_discoChatDefaultConfig()
     #managers_agents_agent_manager_AgentConfig()
     #managers_agents_agent_manager_Agent(config)
-    managers_agents_agent_manager_chat_with_agent()
+    #managers_agents_agent_manager_chat_with_agent()
     #managers_agents_agent_manager_build_prompt()
     #managers_chat_messages_append_turn_to_conversation()
+    ai_ai_initial_review_ai_assist_bounty_listing_to_yaml()
