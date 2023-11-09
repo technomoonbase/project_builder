@@ -1,5 +1,6 @@
 import subprocess
 import sys
+from managers.agents.agent_manager import Agent, discoChatDefaultconfig
 from managers.build_project import create_project
 from tools.utilities.utils import stream_terminal_output, yml_load_programs_list
 from managers.project_manager import ProjectManager
@@ -24,6 +25,7 @@ def print_main_menu():
     [1] Create New Project  
     [2] List Existing Projects
     [3] Open Existing Project
+    [8] Chat with DISCO
     [9] Exit
     _______________________________________________________
     """
@@ -90,6 +92,10 @@ def main():
             list_existing_projects()
         elif choice == '3':
             open_project()
+        elif choice == '8':
+            config = discoChatDefaultconfig()
+            agent = Agent(config)
+            agent.chat_with_agent(project=None)
         elif choice == '9' or choice == 'exit' or choice == 'quit':
             print("Exiting...")
             sys.exit(0)

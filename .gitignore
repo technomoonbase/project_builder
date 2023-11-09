@@ -1,8 +1,12 @@
 # files
 .env
 env
+dizzy.py
 
 # directories
 graveyard/
 projects/
 venv/
+hackers-arise/
+models/
+

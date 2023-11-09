@@ -1,6 +1,6 @@
 conversations:
 - created_at: 2023-11-07 @ 21:19
-  last_active: 2023-11-07 @ 21:32
+  last_active: 2023-11-08 @ 01:02
   turns:
   - conversation: testing
     request:
@@ -254,4 +254,22 @@ conversations:
       timestamp: 2023-11-07 @ 21:32
       uuid: 73170788-fa91-46ea-b648-a2351975bb6a
     uuid: 02183466-e052-40d6-85dd-120c03f07cef
+  - conversation: testing
+    request:
+      content: hello
+      metadata: null
+      project: all
+      role: user
+      speaker_name: user
+      timestamp: 2023-11-08 @ 01:02
+      uuid: 008f7d5f-9016-4ba9-9e23-4b8a3849a1ed
+    response:
+      content: This is response number 1. Thank you for your request.
+      metadata: null
+      project: all
+      role: assistant
+      speaker_name: Disco
+      timestamp: 2023-11-08 @ 01:02
+      uuid: 6532a982-6110-4011-b0c8-25939a55734a
+    uuid: 2109bb97-1f7a-4b1f-8cae-573f46a814d2
   uuid: 35576505-ef48-4562-b081-b2a5c2c8e723

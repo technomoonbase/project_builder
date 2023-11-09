@@ -5,7 +5,7 @@ from uuid import uuid4
 from managers.agents.agent_manager import AgentConfig, discoChatDefaultconfig, Agent
 from managers.agents import default_messages
 from managers.chat.messages import Message, MessageTurn, Conversation, append_turn_to_conversation
-from ai3j.aihelpers import ai_assist_bounty_listing_to_yaml
+from ai3j.ai_initial_review import ai_assist_bounty_listing_to_yaml
 from pathlib import Path
 
 
@@ -137,8 +137,8 @@ def managers_agents_agent_manager_chat_with_agent():
 
 
 def ai_ai_initial_review_ai_assist_bounty_listing_to_yaml():
-    result = ai_assist_bounty_listing_to_yaml('testy')
     print("AI Initial Review Result:\n")
+    result = ai_assist_bounty_listing_to_yaml('kiteworks')
     print(result)
     print("\n=====  AI INITIAL REVIEW PASS  =====\n")
 
@@ -150,4 +150,9 @@ if __name__ == '__main__':
     #managers_agents_agent_manager_chat_with_agent()
     #managers_agents_agent_manager_build_prompt()
     #managers_chat_messages_append_turn_to_conversation()
-    ai_ai_initial_review_ai_assist_bounty_listing_to_yaml()
+    #ai_ai_initial_review_ai_assist_bounty_listing_to_yaml()
+    import torch
+    x = torch.rand(5, 3)
+    print(x)
+    print(torch.version.cuda)
+    print(torch.cuda.is_available())

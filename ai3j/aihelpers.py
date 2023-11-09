@@ -1,49 +1,43 @@
-import json
-import OpenAI
+import os
+import requests
+from tenacity import wait_random_exponential, retry, stop_after_attempt
 from dotenv import load_dotenv
 
 load_dotenv()
 
 
-@retry(wait=wait_random_exponential(multiplier=1, max=3), stop=stop_after_attempt(8))
-def get_embedding(self, content):
-    """
-    this function gets the embedding from OpenAI
+@retry(wait=wait_random_exponential(multiplier=1, max=60), stop=stop_after_attempt(6))
+def openai_chat_completion_http(messages):
+    api_key = os.getenv('OPENAI_API_KEY')
+    api_url = "https://api.openai.com/v1/chat/completions"
 
-    :param content:
-    :return:
-    """
-    print('==== Contacting OpenAI Embeddings API ====')
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    # fix any UNICODE errors
-    embedding_message = json.dumps(content).encode(encoding='ASCII', errors='ignore').decode()
+    headers = {
+        'Authorization': f'Bearer {api_key}',
+        'Content-Type': 'application/json',
+    }
+
+    payload = {
+        'model': 'gpt-4',
+        'messages': messages,
+    }
+
+    completion_content = "No response received yet."
     try:
-        # create the embedding
-        response = openai.Embedding.create(
-            input=embedding_message,
-            engine=self.embedding_engine,
-            api_key=self.api_key
-        )
-        # vectorize the embedding and return it
-        vector = response['data'][0]['embedding']
+        response = requests.post(url=api_url, headers=headers, json=payload)
+        response.raise_for_status()  # This will raise an HTTPError if the HTTP request returned an unsuccessful status code
+        completion_content = response.json()['choices'][0]['message']['content']
+    except requests.exceptions.HTTPError as http_err:
+        completion_content = f"HTTP error occurred: {http_err}"  # HTTP error
+    except Exception as err:
+        completion_content = f"Other error occurred: {err}"  # Other error
 
-        print("==== Embeddings Successfull ====")
-        return np.array(vector).astype(np.float32)
-    except Exception as e:
-        print(f"Error while getting Open AI Embeddings: {e}")
+    return completion_content
 
 
-@retry(wait=wait_random_exponential(multiplier=1, max=60), stop=stop_after_attempt(8))
-async def openai_chat_completion(self, messages):
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    client = OpenAI()
-    print('==== Contacting OpenAI Chat Completion API ====')
-    try:
-        response = openai.ChatCompletion.create(messages=messages, model="gpt-4", api_key=openai_api_key, temperature=0)
-        response_content = response['choices'][0]['message']['content']
-        print('============= Response Received =============')
-        print(response_content)
-    except Exception as e:
-        response_content = f"Sorry, I'm not feeling well, I just need a moment, please... @technomoonbase @JIWallin3 {e}"
-
-    return response_content
+def print_openai_completion_token_counts(response):
+    response_usage = response.json()['usage']
+    print('============= OpenAI Request Token Counts =============')
+    print(response_usage)
+    print(f"Prompt     Tokens: {response.json()['usage']['prompt_tokens']}")
+    print(f"Completion Tokens: {response.json()['usage']['completion_tokens']}")
+    print(f"Total      Tokens: {response.json()['usage']['total_tokens']}")
